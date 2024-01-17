@@ -1,4 +1,11 @@
-let outputDiv = document.querySelector('#output')
+let outputDiv;
+
+if (typeof document !== 'undefined') {
+  outputDiv = document.querySelector('#output');
+} else {
+  // Обработка случая, когда document не определен (например, в тестовой среде)
+  outputDiv = null;
+}
 // const arr = [[45, 12],[55,21],[19, -2],[104, 20]]
 // const currentValue = arr.map(([first, second]) => {
 //     if (first >=55 && second>=7) {
@@ -979,7 +986,7 @@ let outputDiv = document.querySelector('#output')
 
 
 // Find the odd int
-// function findOdd(arr) {
+// export function findOdd(arr) {
 //   if (arr.length == 1) {
 //     return arr[0]
 //   }
@@ -1001,5 +1008,34 @@ let outputDiv = document.querySelector('#output')
 
 // ***********************
 // Count the number of Duplicates
+function duplicateCount(text) {
+  let count = 0
+  const res = {}
 
-outputDiv.innerHTML = findOdd([1,1,2])
+  if (!text) {
+    return count
+  }
+  
+  for (const iterable of text) {
+    if (typeof text === 'string') {
+      let normalizedString = iterable.toLowerCase()
+      res[normalizedString] = res[normalizedString] + 1 || 1
+    }
+  }
+
+  for (let [key, value] of Object.entries(res)) {
+    if (value > 1) {
+      count++
+    }
+  }
+
+  return count
+
+
+}
+console.log(duplicateCount(''))
+if (outputDiv) {
+  outputDiv.innerHTML = duplicateCount('aabbcde')
+}
+
+export {duplicateCount}

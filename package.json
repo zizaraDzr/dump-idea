@@ -1,5 +1,11 @@
 {
+  "type": "module",
+  "scripts": {
+    "test": "mocha"
+  },
   "devDependencies": {
+    "chai": "^5.0.0",
+    "mocha": "^10.2.0",
     "typescript": "^4.9.5"
   }
 }
