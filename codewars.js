@@ -1016,17 +1016,16 @@ function duplicateCount(text) {
     return count
   }
   
-  for (const iterable of text) {
-    if (typeof text === 'string') {
-      let normalizedString = iterable.toLowerCase()
-      res[normalizedString] = res[normalizedString] + 1 || 1
+  for (const iterable of text.toLowerCase()) {
+    if (res[iterable]) {
+      res[iterable]++
+      if (res[iterable] === 2) {
+        count++
+      }
+    } else {
+      res[iterable] = 1
     }
-  }
 
-  for (let [key, value] of Object.entries(res)) {
-    if (value > 1) {
-      count++
-    }
   }
 
   return count
