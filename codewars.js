@@ -1008,33 +1008,63 @@ if (typeof document !== 'undefined') {
 
 // ***********************
 // Count the number of Duplicates
-function duplicateCount(text) {
-  let count = 0
-  const res = {}
+// function duplicateCount(text) {
+//   let count = 0
+//   const res = {}
 
-  if (!text) {
-    return count
-  }
+//   if (!text) {
+//     return count
+//   }
   
-  for (const iterable of text.toLowerCase()) {
-    if (res[iterable]) {
-      res[iterable]++
-      if (res[iterable] === 2) {
-        count++
+//   for (const iterable of text.toLowerCase()) {
+//     if (res[iterable]) {
+//       res[iterable]++
+//       if (res[iterable] === 2) {
+//         count++
+//       }
+//     } else {
+//       res[iterable] = 1
+//     }
+
+//   }
+
+//   return count
+
+
+// }
+// console.log(duplicateCount(''))
+// **************
+
+// задачка с собеседования *******
+const obj = {
+  a: {
+    b: {
+      c: 'd',
+      g: {
+        f: 'lekk'
       }
-    } else {
-      res[iterable] = 1
-    }
-
+    },
+    e: 'f'
   }
-
-  return count
-
-
-}
-console.log(duplicateCount(''))
-if (outputDiv) {
-  outputDiv.innerHTML = duplicateCount('aabbcde')
 }
 
-export {duplicateCount}
+function get (obj, str) {
+  let parseString = str.split('.')
+  let res = obj
+
+  while (parseString.length > 0) {
+    const node = parseString.shift();
+    res = res[node]
+  }
+  return res
+}
+
+console.log(get(obj, 'a.b')) // {c.d}
+console.log(get(obj, 'a.b.c')) // d
+console.log(get(obj, 'a.e')) // f
+console.log(get(obj, 'a.b.g.f')) // lekk
+// if (outputDiv) {
+//   outputDiv.innerHTML = duplicateCount('aabbcde')
+// }
+
+// export {duplicateCount}
